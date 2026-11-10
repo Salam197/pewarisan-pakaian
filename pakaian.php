@@ -20,15 +20,22 @@ class Pakaian {
     }
 }
 
+// Menggunakan keyword 'extends' agar class Jacket mewarisi class Pakaian
 class Jacket extends Pakaian {
     public $tipeResleting;
 
     public function __construct($merk, $bahan, $hargaModal, $tipeResleting) {
+        // 2. MEMANGGIL CONSTRUCTOR PARENT:
+        //parent::__construct() digunakan agar kita tidak perlu menulis ulang
+        // $this->merk = $merk, dll. Kita delegasikan inisialisasinya ke parent class.
         parent::__construct($merk, $bahan, $hargaModal);
         $this->tipeResleting = $tipeResleting;
     }
 
     public function infoJacket() {
+        // 3. MENGGUNAKAN METHOD PARENT:
+        // Memanggil $this->infoPakaian() yang merupakan method warisan dari class Pakaian
+        // lalu digabungkan dengan informasi spesifik milik Jacket
         return $this->infoPakaian() . ", Tipe Resleting: " . $this->tipeResleting;
     }
 }
@@ -57,6 +64,7 @@ class Pants extends Pakaian {
     public function infoPants() {
         return "Celana dengan potongan $this->jenisPotongan, " . $this->infoPakaian();
     }
+    // disetiap class turunan, kita bisa menambahkan properti dan method spesifik yang hanya relevan untuk jenis pakaian tersebut.
 }
 
 $jaketBomber = new Jacket("Erigo", "Parasut", 175000, "YKK");
